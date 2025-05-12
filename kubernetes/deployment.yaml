@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: finbly
+  name: finbly-backend
+  labels:
+    app: finbly-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finbly-backend
+  template:
+    metadata:
+      labels:
+        app: finbly-backend
+    spec:
+      containers:
+        - name: finbly-backend
+          image: iagouvea/finbly-backend:1.0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: finbly
+  name: finbly-frontend
+  labels:
+    app: finbly-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finbly-frontent
+  template:
+    metadata:
+      labels:
+        app: finbly-frontend
+    spec:
+      containers:
+        - name: finbly-frontend
+          image: iagouvea/finbly-frontend:1.0
+          ports:
+            - containerPort: 80
+          resouces:
+            requests:
+              cpu: 100m
+              memory: 64Mi

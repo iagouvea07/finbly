@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: finbly
+  name: finbly-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: backend.finbly.local
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: finbly-backend
+              port:
+                number: 80
+    - host: frontend.finbly.local
+      paths:
+        - path: /
+          pathType: Prefix 
+          backend:
+            service:
+              name: finbly-frontend
+              port:
+                number: 80
