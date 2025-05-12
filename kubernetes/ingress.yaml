@@ -10,20 +10,20 @@ spec:
   rules:
     - host: backend.finbly.local
       http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: finbly-backend
-              port:
-                number: 80
-        - host: frontend.finbly.local
-          paths:
-            - path: /
-              pathType: Prefix 
-              backend:
-                service:
-                  name: finbly-frontend
-                  port:
-                    number: 80
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: finbly-backend
+                port:
+                  number: 80
+          - host: frontend.finbly.local
+            paths:
+              - path: /
+                pathType: Prefix 
+                backend:
+                  service:
+                    name: finbly-frontend
+                    port:
+                      number: 80
