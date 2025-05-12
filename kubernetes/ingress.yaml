@@ -18,12 +18,13 @@ spec:
                 name: finbly-backend
                 port:
                   number: 80
-          - host: frontend.finbly.local
-            paths:
-              - path: /
-                pathType: Prefix 
-                backend:
-                  service:
-                    name: finbly-frontend
-                    port:
-                      number: 80
+    - host: frontend.finbly.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix 
+            backend:
+              service:
+                name: finbly-frontend
+                port:
+                  number: 80
