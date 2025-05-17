@@ -11,4 +11,4 @@ spec:
     requests:
       storage: 500Mi
   storageClassName: ""
-  volumeName: finbly-pv
+  volumeName: finbly-postgresql-pv
