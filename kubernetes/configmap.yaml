@@ -11,7 +11,6 @@ data:
       server_name localhost;
 
       root        /opt/openblog-js-frontend;
-      index       index.html index.htm index.php;
 
       location /_next/ {
           root /opt/openblog-js-frontend;
