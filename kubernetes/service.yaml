@@ -34,7 +34,7 @@ metadata:
   namespace: finbly
 spec:
   selector:
-    app: finbly-postgres
+    app: finbly-postgresql
   ports:
     - name: http
       protocol: TCP

@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: finbly-postgres
+      app: finbly-postgresql
   template:
     metadata:
       labels:
-        app: finbly-postgres
+        app: finbly-postgresql
     spec:
       containers:
         - name: postgres
