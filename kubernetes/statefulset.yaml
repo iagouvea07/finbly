@@ -23,7 +23,7 @@ spec:
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:
-                valueKeyRef:
+                secretKeyRef:
                   name: finbly-postgres-password
                   key: password
           volumeMounts:
