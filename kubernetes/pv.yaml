@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: finbly-pv
+  name: finbly-postgresql-pv
   namespace: finbly
 spec:
   capacity:

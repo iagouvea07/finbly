@@ -12,18 +12,3 @@ spec:
       storage: 500Mi
   storageClassName: ""
   volumeName: finbly-pv
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: finbly-mongodb-pvc
-  namespace: finbly
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 500Mi
-  storageClassName: ""
-  volumeName: finbly-pv
