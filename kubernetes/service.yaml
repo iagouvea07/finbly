@@ -26,3 +26,17 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finbly-postgresql-svc
+  namespace: finbly
+spec:
+  selector:
+    app: finbly-postgres
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
