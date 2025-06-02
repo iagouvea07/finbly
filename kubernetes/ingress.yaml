@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: backend.finbly.local
+    - host: backend-finbly.local
       http:
         paths:
           - path: /
@@ -18,7 +18,7 @@ spec:
                 name: finbly-backend-svc
                 port:
                   number: 80
-    - host: frontend.finbly.local
+    - host: frontend-finbly.local
       http:
         paths:
           - path: /
@@ -28,3 +28,13 @@ spec:
                 name: finbly-frontend-svc
                 port:
                   number: 80
+    - host: rabbitmq-finbly.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: 
+              service:
+                name: finbly-rabbitmq
+                port:
+                  number: 15672

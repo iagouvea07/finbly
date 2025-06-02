@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: finbly-postgresql
+  name: finbly-postgres
   namespace: finbly
   labels:
-    app: finbly-postgresql
+    app: finbly-postgres
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: finbly-postgresql
+      app: finbly-postgres
   template:
     metadata:
       labels:
-        app: finbly-postgresql
+        app: finbly-postgres
     spec:
       containers:
         - name: postgres
@@ -28,8 +28,38 @@ spec:
                   key: password
           volumeMounts:
             - name: db-volume
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgres/data
       volumes:
         - name: db-volume
           persistentVolumeClaim:
-            claimName: finbly-postgresql-pvc
+            claimName: finbly-postgres-pvc
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: finbly-rabbitmq
+  metadata: finbly
+  labels:
+    app: finbly-rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finbly-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: finbly-rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3-management
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: "admin"
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "admin"
+              
