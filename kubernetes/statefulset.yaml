@@ -38,7 +38,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: finbly-rabbitmq
-  metadata: finbly
+  namespace: finbly
   labels:
     app: finbly-rabbitmq
 spec:
@@ -62,4 +62,3 @@ spec:
               value: "admin"
             - name: RABBITMQ_DEFAULT_PASS
               value: "admin"
-              
