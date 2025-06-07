@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ .Values.namespace }}
-  namespace: finbly
+  name: {{ .Values.statefulSet.database.name }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.statefulSet.database.name }}
 spec:
