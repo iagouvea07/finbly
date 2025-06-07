@@ -48,7 +48,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: {{ Values.statefulSet.queue.name }}
+    app: {{ .Values.statefulSet.queue.name }}
   ports:
     - name: amqp
       protocol: TCP
