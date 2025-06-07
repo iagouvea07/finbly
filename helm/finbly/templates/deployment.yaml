@@ -32,8 +32,8 @@ spec:
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  - name: {{ .Values.secret.database.name }}
-                    key: password
+                  name: {{ .Values.secret.database.name }}
+                  key: password
             - name: RABBITMQ_HOST
               value: {{ .Values.service.queue.name}}
           resources:
