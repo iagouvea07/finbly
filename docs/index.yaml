@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  finbly:
+  - apiVersion: v1
+    created: "2025-06-07T12:19:37.5315506-03:00"
+    description: Helm Chart for finbly project
+    digest: d94eba05cbc90ca99ec14f7a20b3090cbdbcd7260cb4d6032c48bf3cfd849953
+    keywords:
+    - finbly
+    maintainers:
+    - name: Igor Alves
+    name: finbly
+    type: application
+    urls:
+    - https://iagouvea07.github.io/finbly/finbly-1.tgz
+    version: "1"
+generated: "2025-06-07T12:19:37.5300477-03:00"
