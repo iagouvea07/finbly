@@ -21,6 +21,8 @@ spec:
           ports:
             - containerPort: {{ .Values.statefulSet.database.port }}
           env:
+            - name: POSTGRES_USER
+              value: {{ .Values.statefulSet.database.user }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
