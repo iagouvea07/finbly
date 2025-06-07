@@ -38,6 +38,9 @@ jobs:
       - name: Set Frontend Version
         run: echo "FRONTEND_VERSION=$(grep iagouvea/finbly-frontend ./kubernetes/deployment.yaml | awk -F ':' '{print $3}')" >> $GITHUB_ENV
 
+      #Enabling Multiplatform Build
+      - name: Enable Multiplatform Build
+        run: docker buildx create --use
 
       #Backend Workflow
       - name: Install Dependences (Backend)
@@ -45,7 +48,7 @@ jobs:
         working-directory: ./backend
 
       - name: Build Docker Image (Backend)
-        run: docker build . --file Dockerfile --tag iagouvea/finbly-backend:${BACKEND_VERSION}
+        run: docker buildx build . --file Dockerfile --tag iagouvea/finbly-backend:${BACKEND_VERSION} --platform linux/amd64,linux/arm64
         working-directory: ./backend
 
       - name: Send Docker image to repository (Backend)
@@ -62,7 +65,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build the Docker image (Frontend)
-        run: docker build . --file Dockerfile --tag iagouvea/finbly-frontend:${FRONTEND_VERSION}
+        run: docker buildx build . --file Dockerfile --tag iagouvea/finbly-frontend:${FRONTEND_VERSION} --platform linux/amd64,linux/arm64
         working-directory: ./frontend
 
       - name: Send Docker image to repository (Frontend)
