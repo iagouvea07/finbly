@@ -47,7 +47,7 @@ spec:
           image: {{ .Values.deployment.frontend.image }}
           ports:
             - containerPort: {{ .Values.deployment.frontend.port }}
-          resouces:
+          resources:
             requests:
               cpu: {{ .Values.deployment.frontend.cpu }}
               memory: {{ .Values.deployment.frontend.memory }}
