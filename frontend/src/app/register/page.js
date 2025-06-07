@@ -28,24 +28,24 @@ const Register = () => {
       case 200:
         router.push('/')
         setTimeout(() => {
-          toast.success('E-mail enviado para confirmação')
+          //toast.success('E-mail enviado para confirmação')
         }, 0)
         break
       case 401:
-        toast.error('Usuário ou e-mail já utilizado')
+        //toast.error('Usuário ou e-mail já utilizado')
         break
       case 400:
-        toast.error('Campos com valores inválidos')
+        //toast.error('Campos com valores inválidos')
         break
       default:
-        toast.error('Erro desconhecido')
+        //toast.error('Erro desconhecido')
         break
     }
   }
 
   return (
     <>
-      <ToastContainer theme="dark" />
+      {/* -- <ToastContainer theme="dark" /> --> */}
       <div className="form">
         <h1 className="title_register">Registre sua conta</h1>
         <Input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} />
