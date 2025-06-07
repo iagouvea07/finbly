@@ -48,11 +48,11 @@ jobs:
         working-directory: ./backend
 
       - name: Build Docker Image (Backend)
-        run: docker buildx build . --file Dockerfile --tag iagouvea/finbly-backend:${BACKEND_VERSION} --platform linux/amd64,linux/arm64
+        run: docker buildx build . --file Dockerfile --tag iagouvea/finbly-backend:${BACKEND_VERSION} --platform linux/amd64,linux/arm64 --push
         working-directory: ./backend
 
-      - name: Send Docker image to repository (Backend)
-        run: docker push iagouvea/finbly-backend:${BACKEND_VERSION}
+      #- name: Send Docker image to repository (Backend)
+        #run: docker push iagouvea/finbly-backend:${BACKEND_VERSION}
 
 
       #Frontend Workflow
@@ -65,8 +65,8 @@ jobs:
         working-directory: ./frontend
 
       - name: Build the Docker image (Frontend)
-        run: docker buildx build . --file Dockerfile --tag iagouvea/finbly-frontend:${FRONTEND_VERSION} --platform linux/amd64,linux/arm64
+        run: docker buildx build . --file Dockerfile --tag iagouvea/finbly-frontend:${FRONTEND_VERSION} --platform linux/amd64,linux/arm64 --push
         working-directory: ./frontend
 
-      - name: Send Docker image to repository (Frontend)
-        run: docker push iagouvea/finbly-frontend:${FRONTEND_VERSION}
+      #- name: Send Docker image to repository (Frontend)
+      #  run: docker push iagouvea/finbly-frontend:${FRONTEND_VERSION}
