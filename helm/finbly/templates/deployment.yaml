@@ -20,6 +20,9 @@ spec:
           image: {{ .Values.deployment.backend.image }}
           ports:
             - containerPort: {{ .Values.deployment.backend.port }}
+          env:
+            - name: DB_TYPE
+              value: POSTGRES
           resources:
             requests:
               cpu: {{ .Values.deployment.backend.cpu }}
