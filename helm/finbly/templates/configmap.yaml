@@ -31,3 +31,13 @@ data:
       error_log   /var/log/nginx/error.log warn;
       access_log  /var/log/nginx/access.log main;
     }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finbly-init-sql
+  namespace: {{ .Values.namespace }}
+data:
+  init.sql: |
+    CREATE USER finbly WITH PASSWORD 'sua_senha';
+    CREATE DATABASE finblydb OWNER finbly;
