@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.deployment.backend.name }}
+  labels:
+    app: {{ .Values.deployment.backend.name }}
+spec:
+  replicas: {{ .Values.deployment.backend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ Values.deployment.backend.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ Values.deployment.backend.name }}
+    spec:
+      containers:
+        - name: {{ Values.deployment.backend.name }}
+          image: {{ .Values.deployment.backend.image }}
+          ports:
+            - containerPort: {{ .Values.deployment.backend.port }}
+          resources:
+            requests:
+              cpu: {{ .Values.deployment.backend.cpu }}
+              memory: {{ .Values.deployment.backend.memory }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.deployment.namespace }}
+  name: {{ .Values.deployment.frontend.name }}
+  labels:
+    app: {{ .Values.deployment.frontend.name }}
+spec:
+  replicas: {{ .Values.deployment.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.frontend.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.frontend.name }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.frontend.name }}
+          image: {{ .Values.deployment.frontend.image }}
+          ports:
+            - containerPort: {{ .Values.deployment.frontend.port }}
+          resouces:
+            requests:
+              cpu: {{ .Values.deployment.frontend.cpu }}
+              memory: {{ .Values.deployment.frontend.memory }}
+          volumeMounts:
+            - name: finbly-frontend-config
+              mountPath: /etc/nginx/conf.d
+              readOnly: true
+      volumes:
+        - name: finbly-frontend-config
+          configMap:
+            name: {{ .Values.configMapName }}

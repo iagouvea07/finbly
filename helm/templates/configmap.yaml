@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.configMapName}}
+data:
+  default.conf: | 
+    server {
+      listen      80;
+      listen [::]:80;
+      server_name localhost;
+
+      root        /opt/finbly-frontend;
+      index       index.html index.htm index.php;
+
+      location /_next/ {
+          root /opt/finbly-frontend;
+      }
+
+      location /static/ {
+          root /opt/finbly-frontend;
+      }
+
+      location ~* \.(?:ico|css|js|gif|jpe?g|png|woff2?|eot|ttf|svg|otf|webp)$ {
+          root /opt/finbly-frontend;
+          access_log off;
+          expires 1d;
+          add_header Cache-Control "public, immutable";
+      }
+
+      error_log   /var/log/nginx/error.log warn;
+      access_log  /var/log/nginx/access.log main;
+    }

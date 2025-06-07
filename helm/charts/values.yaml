@@ -1,0 +1,85 @@
+namespace: finbly
+configMapName: finbly-configmap
+
+deployment:
+  backend:
+    name: finbly-backend
+    replicas: 1
+    image: iagouvea/finbly-backend:1.0
+    port: 8080
+    cpu: 100m
+    memory: 64Mi
+
+  frontend:
+    name: finbly-frontend
+    replicas: 1
+    image: iagouvea/finbly-frontend:1.0
+    port: 80
+    cpu: 100m
+    memory: 64Mi
+    configMapName: finbly-configmap
+
+hpa:
+  backend:
+    name: finbly-backend-hpa
+    minReplicas: 1
+    maxReplicas: 3
+    averageCpuUtilization: 50
+
+  frontend:
+    name: finble-frontend-hpa
+    minReplicas: 1
+    maxReplicas: 3
+    averageCpuUtilization: 50
+
+statefulSet:
+  database:
+    name: finbly-postgres
+    replicas: 1
+    image: postgres:17
+    port: 5432
+  
+  queue:
+    name: finbly-rabbitmq
+    replicas: 1
+    image: rabbitmq:3-management
+    amqpPort: 5672
+    adminPort: 15672
+
+service:
+  backend:
+    name: finbly-backend-svc
+
+  frontend:
+    name: finbly-frontend-svc
+  
+  database:
+    name: finbly-postgres-svc
+
+  queue:
+    name: finbly-rabbitmq-svc
+
+ingress:
+  name: finbly-ingress
+  ingressClassName: nginx
+
+  backend:
+    host: backend-finbly.local
+
+  frontend:
+    host: frontend-finbly.local
+  
+  queue:
+    host: rabbitmq-finbly.local
+
+pvc:
+  database:
+    name: finbly-postgres-pvc
+    storage: 500Mi
+
+secret:
+  database:
+    name: finbly-postgres-password
+
+  queue:
+    name: finbly-rabbitmq-password
