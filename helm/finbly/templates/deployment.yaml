@@ -9,14 +9,14 @@ spec:
   replicas: {{ .Values.deployment.backend.replicas }}
   selector:
     matchLabels:
-      app: {{ Values.deployment.backend.name }}
+      app: {{ .Values.deployment.backend.name }}
   template:
     metadata:
       labels:
-        app: {{ Values.deployment.backend.name }}
+        app: {{ .Values.deployment.backend.name }}
     spec:
       containers:
-        - name: {{ Values.deployment.backend.name }}
+        - name: {{ .Values.deployment.backend.name }}
           image: {{ .Values.deployment.backend.image }}
           ports:
             - containerPort: {{ .Values.deployment.backend.port }}

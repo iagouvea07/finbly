@@ -1,8 +1,8 @@
-apiVersion: v1
+apiVersion: v2
 name: finbly
 description: Helm Chart for finbly project
 type: application
-version: 1.0
+version: "1.0"
 keywords:
   - finbly
 maintainers:
