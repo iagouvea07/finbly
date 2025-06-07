@@ -28,7 +28,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: {{ .Values.deployment.namespace }}
+  namespace: {{ .Values.namespace }}
   name: {{ .Values.deployment.frontend.name }}
   labels:
     app: {{ .Values.deployment.frontend.name }}
