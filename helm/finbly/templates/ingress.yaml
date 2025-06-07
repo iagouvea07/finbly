@@ -27,7 +27,7 @@ spec:
               service:
                 name: {{ .Values.service.frontend.name }}
                 port:
-                  number: {{ .Values.service.frontend.port }}
+                  number: {{ .Values.deployment.frontend.port }}
     - host: {{ .Values.ingress.queue.host}}
       http:
         paths:
@@ -37,4 +37,4 @@ spec:
               service:
                 name: {{ .Values.service.queue.name }}
                 port:
-                  number: {{ .Values.service.queue.port}}
+                  number: {{ .Values.statefulSet.queue.adminPort }}
