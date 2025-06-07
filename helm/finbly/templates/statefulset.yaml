@@ -37,7 +37,6 @@ spec:
         - name: initdb
           configMap:
             name: finbly-init-sql
-      volumes:
         - name: db-volume
           persistentVolumeClaim:
             claimName: {{ .Values.pvc.database.name }}

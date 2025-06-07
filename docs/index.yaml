@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   finbly:
   - apiVersion: v2
-    created: "2025-06-07T17:36:49.4798866-03:00"
+    created: "2025-06-07T17:38:36.4106397-03:00"
     description: Helm Chart for finbly project
-    digest: df691b28c7e520280190ebc6ca28383419965967e0d44061ed496210c1e61d25
+    digest: 41b7898166db8ac324f93fce10d771eaeb2461272c3b90f1e2da86278067f79e
     keywords:
     - finbly
     maintainers:
@@ -14,4 +14,4 @@ entries:
     urls:
     - https://iagouvea07.github.io/finbly/finbly-1.0.tgz
     version: "1.0"
-generated: "2025-06-07T17:36:49.4788869-03:00"
+generated: "2025-06-07T17:38:36.4101222-03:00"
