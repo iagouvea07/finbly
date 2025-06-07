@@ -48,9 +48,9 @@ const Register = () => {
       {/* -- <ToastContainer theme="dark" /> --> */}
       <div className="form">
         <h1 className="title_register">Registre sua conta</h1>
-        <Input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} />
-        <Input type="text" placeholder="Usuário" onChange={(e) => setUser(e.target.value)} />
-        <Input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
+        {/* -- <Input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} /> --> */}
+        {/* -- <Input type="text" placeholder="Usuário" onChange={(e) => setUser(e.target.value)} /> --> */}
+        {/* -- <Input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} /> --> */}
         <input
           type="button"
           value="Registrar"
