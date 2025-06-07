@@ -1,5 +1,6 @@
 namespace: finbly
 configMapName: finbly-configmap
+databaseName: finbly
 
 deployment:
   backend:
@@ -55,6 +56,7 @@ service:
   
   database:
     name: finbly-postgres-svc
+    type: POSTGRES
 
   queue:
     name: finbly-rabbitmq-svc

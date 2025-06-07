@@ -22,7 +22,20 @@ spec:
             - containerPort: {{ .Values.deployment.backend.port }}
           env:
             - name: DB_TYPE
-              value: POSTGRES
+              value: {{ .Values.service.database.type }}
+            - name: DB_HOST
+              value: {{ .Values.service.database.name }}
+            - name: DB_USER
+              value: {{ .Values.databaseName}}
+            - name: DB_SCHEMA
+              value: {{ .Values.databaseName}}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  - name: {{ .Values.secret.database.name }}
+                    key: password
+            - name: RABBITMQ_HOST
+              value: {{ .Values.service.queue.name}}
           resources:
             requests:
               cpu: {{ .Values.deployment.backend.cpu }}
