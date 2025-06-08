@@ -19,8 +19,6 @@ async function connect() {
       await channel.assertQueue(queue, { durable: true });
 
     } catch (err) {
-      console.log(`user: ${process.env.RABBITMQ_DEFAULT_USER}, password: ${process.env.RABBITMQ_DEFAULT_PASS}`)
-      console.log(`host: ${rabbitmqUrl}`)
       console.error('❌ Failed to connect to RabbitMQ', err);
       process.exit(1);
     }
