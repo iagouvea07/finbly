@@ -10,6 +10,7 @@ deployment:
     port: 8080
     cpu: 100m
     memory: 64Mi
+    otlPort: 9464
 
   frontend:
     name: finbly-frontend

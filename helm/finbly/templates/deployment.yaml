@@ -20,6 +20,7 @@ spec:
           image: {{ .Values.deployment.backend.image }}
           ports:
             - containerPort: {{ .Values.deployment.backend.port }}
+            - containerPort: {{ .Values.deployment.backend.otlPort }}
           env:
             - name: DB_TYPE
               value: {{ .Values.service.database.type }}

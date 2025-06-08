@@ -11,6 +11,10 @@ spec:
       protocol: TCP
       port: 80
       targetPort: {{ .Values.deployment.backend.port }}
+    - name: otl
+      protocol: TCP
+      port: {{ .Values.deployment.backend.otlPort }}
+      targetPort: {{ .Values.deployment.backend.otlPort }}
   type: ClusterIP
 ---
 apiVersion: v1
