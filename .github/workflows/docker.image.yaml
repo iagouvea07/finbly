@@ -33,10 +33,10 @@ jobs:
     
       #Setting Environment Variables
       - name: Set Backend Version
-        run: echo "BACKEND_VERSION=$(grep iagouvea/finbly-backend ./kubernetes/deployment.yaml | awk -F ':' '{print $3}')" >> $GITHUB_ENV
+        run: echo "BACKEND_VERSION=$(grep iagouvea/finbly-backend ./helm/finbly/templates/deployment.yaml | awk -F ':' '{print $3}')" >> $GITHUB_ENV
       
       - name: Set Frontend Version
-        run: echo "FRONTEND_VERSION=$(grep iagouvea/finbly-frontend ./kubernetes/deployment.yaml | awk -F ':' '{print $3}')" >> $GITHUB_ENV
+        run: echo "FRONTEND_VERSION=$(grep iagouvea/finbly-frontend ./helm/finbly/templates/deployment.yaml | awk -F ':' '{print $3}')" >> $GITHUB_ENV
 
       #Enabling Multiplatform Build
       - name: Enable Multiplatform Build
