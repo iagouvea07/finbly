@@ -2,12 +2,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const db = require('./middleware/db.js');
 const rabbitmq = require('./middleware/rabbitmq.js');
-
 const router = require('./routes/router.js');
 
+require('./middleware/tracing.js');
 dotenv.config();
 const app = express();
 
