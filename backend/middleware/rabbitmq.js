@@ -6,11 +6,11 @@ dotenv.config();
 let connection = null;
 let channel = null;
 
+const rabbitmqUrl = `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@${process.env.RABBITMQ_HOST}`
+
 async function connect() {
   if (connection === null) {
     try {
-
-      const rabbitmqUrl = `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@${process.env.RABBITMQ_HOST}`
       connection = await amqp.connect(rabbitmqUrl);
       channel = await connection.createChannel();
 

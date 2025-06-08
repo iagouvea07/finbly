@@ -36,6 +36,13 @@ spec:
                   key: password
             - name: RABBITMQ_HOST
               value: {{ .Values.service.queue.name}}
+            - name: RABBITMQ_DEFAULT_USER
+              value: admin
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.queue.name }}
+                  key: password
           resources:
             requests:
               cpu: {{ .Values.deployment.backend.cpu }}
