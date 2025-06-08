@@ -39,5 +39,20 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   init.sql: |
-    CREATE USER finbly WITH PASSWORD 'sua_senha';
-    CREATE DATABASE finblydb OWNER finbly;
+    DO
+    $$
+    BEGIN
+      IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'finbly') THEN
+        CREATE USER finbly WITH PASSWORD '6055302';
+      END IF;
+    END
+    $$;
+
+    DO
+    $$
+    BEGIN
+      IF NOT EXISTS (SELECT FROM pg_database WHERE datname = 'finblydb') THEN
+        CREATE DATABASE finblydb OWNER finbly;
+      END IF;
+    END
+    $$;
