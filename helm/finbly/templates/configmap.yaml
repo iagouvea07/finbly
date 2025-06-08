@@ -43,10 +43,16 @@ data:
     $$
     BEGIN
       IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'finbly') THEN
-        CREATE USER finbly WITH PASSWORD '6055302';
+        CREATE USER finbly WITH PASSWORD 'sua_senha';
       END IF;
     END
     $$;
+
+    -- Criação condicional do banco usando psql puro (não DO block)
+    \connect postgres
+    SELECT 'CREATE DATABASE finblydb OWNER finbly'
+    WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'finblydb')
+    \gexec
 
     DO
     $$
