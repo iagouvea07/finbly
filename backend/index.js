@@ -19,6 +19,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: "100mb"}));
 
 app.use('/', router.postRouter);
+app.use('/', router.getRouter);
+app.use('/', router.putRouter);
 
 async function startServer() {
   try {

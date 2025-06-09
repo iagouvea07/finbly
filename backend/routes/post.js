@@ -2,7 +2,7 @@ const router = require('express').Router();
 const db = require('../middleware/db.js');
 const rabbitmq = require('../middleware/rabbitmq.js');
 
-router.post('/admin/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     const { username, name, last_name, email } = req.body;
 
 const characters = [

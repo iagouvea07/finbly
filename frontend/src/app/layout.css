@@ -12,13 +12,13 @@ body {
   height: 100vh;
 }
 
-.register-container {
+.login-container {
   width: 100%;
   max-width: 400px;
   padding: 1rem;
 }
 
-.register-box {
+.login-box {
   background-color: #ffffff;
   border-radius: 8px;
   padding: 2rem;
@@ -52,6 +52,26 @@ label {
 }
 
 input[type="email"],
+input[type="password"] {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper .toggle-eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1rem;
+}
 
 .links {
   display: flex;
