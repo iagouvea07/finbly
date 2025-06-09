@@ -6,7 +6,7 @@ deployment:
   backend:
     name: finbly-backend
     replicas: 1
-    image: iagouvea/finbly-backend:1.1
+    image: iagouvea/finbly-backend:1.2
     port: 8080
     cpu: 100m
     memory: 64Mi
@@ -15,7 +15,7 @@ deployment:
   frontend:
     name: finbly-frontend
     replicas: 1
-    image: iagouvea/finbly-frontend:1.0
+    image: iagouvea/finbly-frontend:1.2
     port: 80
     cpu: 100m
     memory: 64Mi
