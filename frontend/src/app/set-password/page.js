@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
 import { useSearchParams } from 'next/navigation';
@@ -11,8 +11,7 @@ import Input from '@/components/input/input';
 import '../globals.css'
 import './layout.css'
 
-
-const SetPassword = () => {
+const SetPasswordForm = () => {
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
   const [username, setUsername] = useState('');
@@ -59,18 +58,18 @@ const SetPassword = () => {
       }
     }
 
-    fetchUser();
-  }, []);
+    if (token) {
+      fetchUser();
+    }
+  }, [token]);
 
   return (
-    <>
-      <ToastContainer /> 
-      <div className="register-container">
-        <div className="register-box">
+    <div className="register-container">
+      <div className="register-box">
         <h2>Active your account</h2>
         <form>
-          <Input type="text" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          <Input type="text" placeholder="Repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
+          <Input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+          <Input type="password" placeholder="Repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
           <input
             type="button"
             value="Submit"
@@ -78,8 +77,18 @@ const SetPassword = () => {
             onClick={handleRegister}
           />
         </form>
-        </div>
       </div>
+    </div>
+  )
+}
+
+const SetPassword = () => {
+  return (
+    <>
+      <ToastContainer /> 
+      <Suspense fallback={<div>Loading...</div>}>
+        <SetPasswordForm />
+      </Suspense>
     </>
   )
 }
