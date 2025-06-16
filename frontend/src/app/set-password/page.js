@@ -12,7 +12,7 @@ import '../globals.css'
 import './layout.css'
 
 
-const Register = () => {
+const SetPassword = () => {
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
   const [username, setUsername] = useState('');
@@ -51,8 +51,8 @@ const Register = () => {
         const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_HOST}:${process.env.NEXT_PUBLIC_API_PORT}/user-activate?id=${token}`);
         const data = await response.json();
         
-        await setUsername(data.username);
-        await setEmail(data.email);
+        setUsername(data.username);
+        setEmail(data.email);
 
       } catch (error) {
         console.error('Erro ao validar token:', error);
@@ -84,4 +84,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default SetPassword
