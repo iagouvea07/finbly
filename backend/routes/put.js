@@ -1,17 +1,25 @@
 const router = require('express').Router();
 const db = require('../middleware/db.js');
+const bcrypt = require('bcrypt');
 
-router.put('/password-update', async (req, res) => {
-    const { id, password } = req.body
-    const response = await db.Users.update({ password: password }, 
+
+router.put('/set-password', async (req, res) => {
+    const {username, email, password} = req.body;
+    const salt = await bcrypt.genSalt(10)
+    const hashPassword = await bcrypt.hash(password, salt)
+
+    await db.Users.update(
+        {password: hashPassword, is_active: 't'},
         {
             where: {
-                id: id
+                username: username,
+                email: email
             }
         }
     )
 
-    res.status(200).send({message: response})
+    res.status(200).send({message: "success!"})
+    
 })
 
 module.exports = router

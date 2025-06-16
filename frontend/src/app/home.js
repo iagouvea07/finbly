@@ -7,20 +7,25 @@ import { ToastContainer, toast } from 'react-toastify'
 import './layout.css'
 import Logo from '../../public/images/finbly.png'
 import Image from 'next/image'
+import Modal from '../components/modal/modal.js'
 
 export default function HomeClient() {
   const searchParams = useSearchParams()
   const mailRegister = searchParams.get('sended-mail-registration')
+  const passwordUpdated = searchParams.get('password-updated')
 
   useEffect(() => {
     if (mailRegister === '1') {
-      toast.success('E-mail enviado para confirmação')
+      toast.success('E-mail sended to confirmation')
+    }
+    else if (passwordUpdated === '1') {
+      toast.success('Password updated successfully')
     }
   }, [mailRegister])
 
   return (
     <>
-      <ToastContainer theme="dark" />
+      <ToastContainer />
       <div className="login-container">
         <div className="login-box">
           <Image src={Logo} alt="Finbly Logo" width={150} height={150} />
@@ -33,14 +38,15 @@ export default function HomeClient() {
             <input type="password" id="password" placeholder="••••••••" required />
 
             <div className="links">
-              <a href="#">Forgot password?</a>
+              <a href="#"><Modal/></a>
             </div>
 
             <button type="submit">Log in</button>
           </form>
           <p className="signup">
-            Don't have an account? <a href="#">Sign up</a>
+            Don't have an account? <a href="/register">Sign up</a>
           </p>
+          
         </div>
       </div>
     </>

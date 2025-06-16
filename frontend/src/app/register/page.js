@@ -38,21 +38,21 @@ const Register = () => {
         router.push('/?sended-mail-registration=1')
         break
       case 401:
-        toast.error('Usuário ou e-mail já utilizado')
+        toast.error("Information is missing or invalid")
         break
       case 400:
-        toast.error('Campos com valores inválidos')
+        toast.error("User already exists")
         break
       default:
-        toast.error('Erro desconhecido')
+        toast.error('Unknown Error')
         break
     }
   }
   return (
     <>
-      <ToastContainer theme="dark" /> 
-      <div class="register-container">
-        <div class="register-box">
+      <ToastContainer /> 
+      <div className="register-container">
+        <div className="register-box">
         <h2> Sign in your account</h2>
         <form>
           <Input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />
