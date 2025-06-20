@@ -28,6 +28,10 @@ data:
           add_header Cache-Control "public, immutable";
       }
 
+      location / {
+        try_files $uri $uri.html $uri/ =404;
+      }
+
       error_log   /var/log/nginx/error.log warn;
       access_log  /var/log/nginx/access.log main;
     }
