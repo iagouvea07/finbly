@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const db = require('../middleware/db.js');
+const db = require('../middleware/postgres.js');
 const rabbitmq = require('../middleware/rabbitmq.js');
 
 router.post('/register', async (req, res) => {
@@ -42,11 +42,7 @@ router.post('/register', async (req, res) => {
         { fields: ['username', 'name', 'last_name', 'email', 'password'] });
 
         const channel = await rabbitmq.connect();
-        const message = {
-            username,
-            email,
-            password
-        };
+        const message = {username, email};
 
         channel.sendToQueue('mail_queue', Buffer.from(JSON.stringify(message)));
         console.log(`[x] Sent: ${message}`);
@@ -59,6 +55,27 @@ router.post('/register', async (req, res) => {
     }
 });
 
+router.post('/password-recovery', async (req, res) => {
+    const {email} = req.body;
 
+    const findUser = await db.Users.findAll({
+        attributes: ['username', 'email'],
+        where: {email: email}
+    })
+
+    if(findUser.length > 0 && findUser[0].dataValues.email === email) {
+        const channel = await rabbitmq.connect();
+        const username = findUser[0].dataValues.email
+        const message = {username, email};
+
+        channel.sendToQueue('mail_queue', Buffer.from(JSON.stringify(message)));
+        console.log(`[x] Sent: ${message}`);
+
+        res.status(200).send('Success!'); 
+    }
+    else {
+        res.status(404).send({ message: 'User not found!' })
+    }
+})
 
 module.exports = router;

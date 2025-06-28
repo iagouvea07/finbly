@@ -2,7 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./middleware/db.js');
+const mongodb = require('./middleware/mongodb.js');
+
+const db = require('./middleware/postgres.js');
 const rabbitmq = require('./middleware/rabbitmq.js');
 const router = require('./routes/router.js');
 
@@ -29,6 +31,10 @@ async function startServer() {
 
     await rabbitmq.connect();
     console.log('✅ Connected to RabbitMQ');
+
+    await mongodb.mongoConnect();
+    console.log('✅ Connected to MongoDB');
+
 
     app.listen(PORT, () => {
       console.log(`✅ Server running on port ${PORT}`);

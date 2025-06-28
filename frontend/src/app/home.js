@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 
@@ -13,6 +13,7 @@ export default function HomeClient() {
   const searchParams = useSearchParams()
   const mailRegister = searchParams.get('sended-mail-registration')
   const passwordUpdated = searchParams.get('password-updated')
+  const router = useRouter()
 
   useEffect(() => {
     if (mailRegister === '1') {
@@ -22,6 +23,10 @@ export default function HomeClient() {
       toast.success('Password updated successfully')
     }
   }, [mailRegister])
+
+  const handleLogin = () => {
+    router.push('/home')
+  }
 
   return (
     <>
@@ -41,7 +46,7 @@ export default function HomeClient() {
               <a href="#"><Modal/></a>
             </div>
 
-            <button type="submit">Log in</button>
+            <button type="button" className='submit' onClick={handleLogin}>Log in</button>
           </form>
           <p className="signup">
             Don't have an account? <a href="/register">Sign up</a>

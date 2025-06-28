@@ -7,36 +7,35 @@ import './modal.css';
 
 function Modal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [contactForm, setContactForm] = useState({email: ''});
+    const [email, setEmail] = useState({email: ''});
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setContactForm((prevForm) => ({
+        setEmail((prevForm) => ({
           ...prevForm,
           [name]: value,
         }));
       };
     
       const handleSubmit = async () => {
-        if (!contactForm.email) {
+        if (!email.email) {
           toast.error('Please fill in the field.');
           return;
         }
     
         try {
-          const response = await fetch('https://skh3b1n6i0.execute-api.us-east-1.amazonaws.com/SendMail', {
+          const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_HOST}:${process.env.NEXT_PUBLIC_API_PORT}/password-recovery`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'x-api-key': 'EcdCJxWLcm1rtcDlPG3w4aYQn0wc3zA98yk50QZV',
             },
-            body: JSON.stringify(contactForm),
+            body: JSON.stringify(email),
           });
     
           if (response.status == 200) {
             console.log(response.status)
             toast.success('Message sent successfully!');
-            setContactForm({ email: ''});
+            setEmail({ email: ''});
             handleCloseModal();
           } else {
             toast.error('Failed to send message. Please try again.');
@@ -69,14 +68,14 @@ function Modal() {
                     &times;
                     </button>
                     <h2 className='modal-h2'>Please fill in your e-mail</h2>
-                    <input 
+                    <input  
                       type='email'
                       name="email"
-                      value={contactForm.email}
+                      value={email.email}
                       onChange={handleInputChange}
                       placeholder="Email">
                     </input>
-                    <button type='submit' value='Submit' onClick={handleSubmit}>Send e-mail</button>
+                    <button type='button' value='Submit' className='submit' onClick={handleSubmit}>Send e-mail</button>
                 </div>
                 </>
             )}

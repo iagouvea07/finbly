@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const db = require('../middleware/db.js');
+const db = require('../middleware/postgres.js');
 const bcrypt = require('bcrypt');
 
 
