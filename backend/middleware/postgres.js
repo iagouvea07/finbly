@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Op } = require('sequelize');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -50,5 +50,74 @@ const Users = sequelize.define(
     }
 )
 
+const Budgets = sequelize.define(
+    'budgets',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        type_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        value: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        period: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_id: {
+            type: DataTypes.INTEGER
+        }
+    }
+)
 
-module.exports = {sequelize, Users}
+const BudgetTypes = sequelize.define(
+    'budget_types',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }
+    }
+)
+
+async function initBudgetTypes() {
+    const types = ['Alimentação', 'Lazer', 'Educação', 'Investimentos', 'Transporte'];
+
+    const getBudgetTypes = await BudgetTypes.findAll({
+        where: {  
+            name: {
+                [Op.in]: types
+            }  
+        } 
+    });
+    
+    const existingNames = getBudgetTypes.map(t => t.name);
+    const missingTypes = types.filter(t => !existingNames.includes(t));
+
+    if (missingTypes.length === 0) {
+        return;
+    }
+
+    await BudgetTypes.bulkCreate(missingTypes.map(name => ({ name })));
+}
+
+initBudgetTypes()
+
+module.exports = {sequelize, Users, Budgets, BudgetTypes}

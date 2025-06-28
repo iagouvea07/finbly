@@ -78,4 +78,12 @@ router.post('/password-recovery', async (req, res) => {
     }
 })
 
+router.post('/budget-create', async (req, res) => {
+    const [name, value, type, period] = req.body;
+    
+//    const response = await db.Budget
+
+})
+
+
 module.exports = router;
