@@ -1,0 +1,25 @@
+name: Build Docker Image
+
+# Dispara o workflow em pushes na branch main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Baixar o código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Configurar Docker (já disponível no Ubuntu)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # 3. Build da imagem Docker
+      - name: Build Docker image
+        run: |
+          docker build -t my-app:latest .
