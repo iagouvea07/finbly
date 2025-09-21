@@ -6,6 +6,7 @@ metadata:
   annotations:
     backstage.io/techdocs-ref: dir:.
     github.com/project-slug: iagouvea07/finbly
+    github.com/branch: main
   tags:
     - nodejs
 spec:
