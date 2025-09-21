@@ -22,4 +22,4 @@ jobs:
       # 3. Build da imagem Docker
       - name: Build Docker image
         run: |
-          docker build -t my-app:latest .
+          docker build -t mfinbly:latest -f docker/Dockerfile .
