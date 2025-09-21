@@ -3,6 +3,10 @@ kind: Component
 metadata:
   name: finbly
   description: "An open-source application for personal finance"
+  links:
+    - url: https://dashboard.example.com
+      title: My Dashboard
+      icon: dashboard
   annotations:
     backstage.io/techdocs-ref: dir:.
     github.com/project-slug: iagouvea07/finbly
@@ -13,4 +17,3 @@ spec:
   type: service
   owner: admin
   lifecycle: production
-  
