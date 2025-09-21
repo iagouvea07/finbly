@@ -1,0 +1,7 @@
+site_name: Finbly
+nav:
+  - Home: index.md
+  - Guide: guide.md
+docs_dir: ./docs
+plugins:
+  - techdocs-core

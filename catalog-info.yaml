@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: finbly
+  description: "An open-source application for personal finance"
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - nodejs
+spec:
+  type: service
+  owner: admin
