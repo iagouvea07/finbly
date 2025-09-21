@@ -4,8 +4,8 @@ metadata:
   name: finbly
   description: "An open-source application for personal finance"
   links:
-    - url: https://dashboard.example.com
-      title: My Dashboard
+    - url: https://github.com/iagouvea07/finbly
+      title: Repository
       icon: dashboard
   annotations:
     backstage.io/techdocs-ref: dir:.
