@@ -10,3 +10,4 @@ metadata:
 spec:
   type: service
   owner: admin
+  lifecycle: production
