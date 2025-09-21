@@ -5,6 +5,7 @@ metadata:
   description: "An open-source application for personal finance"
   annotations:
     backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: iagouvea07/finbly
   tags:
     - nodejs
 spec:
