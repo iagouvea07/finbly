@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: finbly
+  name: finbly-backend
   description: "An open-source application for personal finance"
   links:
     - url: https://github.com/iagouvea07/finbly
