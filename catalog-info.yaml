@@ -20,3 +20,11 @@ spec:
   system: finbly
   dependsOn:
     - component:default/finbly-frontend
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: finbly
+  description: "System for the Finbly personal finance app"
+spec:
+  owner: admin
