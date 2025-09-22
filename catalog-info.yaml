@@ -18,4 +18,4 @@ spec:
   owner: admin
   lifecycle: production
   dependsOn:
-    - component:default/finbly-backend
+    - component:default/finbly-frontend
