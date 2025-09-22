@@ -17,3 +17,5 @@ spec:
   type: service
   owner: admin
   lifecycle: production
+  dependsOn:
+    - component:default/finbly-backend
