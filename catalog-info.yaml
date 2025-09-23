@@ -20,6 +20,8 @@ spec:
   system: finbly
   dependsOn:
     - component:default/finbly-frontend
+  providesApis:
+    - finbly-backend-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -28,3 +30,15 @@ metadata:
   description: "System for the Finbly personal finance app"
 spec:
   owner: admin
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: finbly-backend-api
+  description: API pública do backend do Finbly
+spec:
+  type: openapi
+  lifecycle: production
+  owner: admin
+  definition:
+    $text: ./openapi.yaml
